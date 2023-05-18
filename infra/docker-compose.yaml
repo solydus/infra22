@@ -8,6 +8,11 @@ services:
       - "8000"
     env_file:
       - ./.env
+    depends_on:
+      - db
+    volumes:
+      - static_volume:/usr/src/static/
+ 
     command: python manage.py runserver 0.0.0.0:8000
 
   nginx:
@@ -16,6 +21,7 @@ services:
       - "80:80"
     volumes:
       - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_volume:/usr/src/static/
     depends_on:
       - api_yamdb
 
@@ -25,6 +31,11 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+      
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - static_volume:/usr/src/static/
 
 volumes:
   postgres_data:
+  static_volume:
