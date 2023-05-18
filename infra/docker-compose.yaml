@@ -12,8 +12,6 @@ services:
       - db
     volumes:
       - static_volume:/usr/src/static/
- 
-    command: python manage.py runserver 0.0.0.0:8000
 
   nginx:
     image: nginx:1.21-alpine
