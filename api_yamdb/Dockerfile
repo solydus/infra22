@@ -2,7 +2,7 @@ FROM python:3.7-slim
 ENV TZ=UTC
 WORKDIR /app
 
-COPY ./requirements.txt .
+COPY ./infra_sp2/requirements.txt .
 
 RUN pip3 install -r ./requirements.txt --no-cache-dir
 
